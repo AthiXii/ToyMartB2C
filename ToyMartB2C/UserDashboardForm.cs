@@ -21,5 +21,16 @@ namespace ToyMartB2C
         {
             lblWelcome.Text = "Welcome, " + Session.UserName + " (" + Session.Role + ")";
         }
+
+        private void btnShop_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            this.Close();
+        }
     }
 }

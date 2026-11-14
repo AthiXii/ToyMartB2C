@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ToyMartB2C
 {
@@ -44,16 +45,7 @@ namespace ToyMartB2C
             Session.UserName = dt.Rows[0]["username"].ToString()!;
             Session.Role = dt.Rows[0]["role"].ToString()!;
 
-            Form next = Session.Role switch
-            {
-                "admin" => new AdminDashboardForm(),
-                "service" => new ServiceDashboardForm(),
-                _ => new UserDashboardForm()
-            };
-
-            this.Hide();
-            next.FormClosed += (s, args) => this.Close();
-            next.Show();
+            this.DialogResult = DialogResult.OK;
         }
         private void btnRegister_Click_1(object sender, EventArgs e)
         {

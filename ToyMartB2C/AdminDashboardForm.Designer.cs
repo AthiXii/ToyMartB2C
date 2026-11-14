@@ -29,22 +29,46 @@
         private void InitializeComponent()
         {
             lblWelcome = new Label();
+            btnInventory = new Button();
+            btnLogout = new Button();
             SuspendLayout();
             // 
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Location = new Point(230, 181);
+            lblWelcome.Location = new Point(61, 64);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(38, 15);
             lblWelcome.TabIndex = 0;
             lblWelcome.Text = "label1";
+            // 
+            // btnInventory
+            // 
+            btnInventory.Location = new Point(61, 145);
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(149, 23);
+            btnInventory.TabIndex = 1;
+            btnInventory.Text = "Manage Inventory";
+            btnInventory.UseVisualStyleBackColor = true;
+            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(68, 198);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(75, 23);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLogout);
+            Controls.Add(btnInventory);
             Controls.Add(lblWelcome);
             Name = "AdminDashboardForm";
             Text = "AdminDashboardForm";
@@ -56,5 +80,7 @@
         #endregion
 
         private Label lblWelcome;
+        private Button btnInventory;
+        private Button btnLogout;
     }
 }

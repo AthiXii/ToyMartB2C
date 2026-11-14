@@ -29,22 +29,46 @@
         private void InitializeComponent()
         {
             lblWelcome = new Label();
+            btnShop = new Button();
+            btnLogout = new Button();
             SuspendLayout();
             // 
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Location = new Point(149, 230);
+            lblWelcome.Location = new Point(78, 54);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(38, 15);
             lblWelcome.TabIndex = 0;
             lblWelcome.Text = "label1";
+            // 
+            // btnShop
+            // 
+            btnShop.Location = new Point(78, 117);
+            btnShop.Name = "btnShop";
+            btnShop.Size = new Size(75, 23);
+            btnShop.TabIndex = 1;
+            btnShop.Text = "Shop";
+            btnShop.UseVisualStyleBackColor = true;
+            btnShop.Click += btnShop_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(177, 117);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(75, 23);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // UserDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLogout);
+            Controls.Add(btnShop);
             Controls.Add(lblWelcome);
             Name = "UserDashboardForm";
             Text = "UserDashboardForm";
@@ -56,5 +80,7 @@
         #endregion
 
         private Label lblWelcome;
+        private Button btnShop;
+        private Button btnLogout;
     }
 }
