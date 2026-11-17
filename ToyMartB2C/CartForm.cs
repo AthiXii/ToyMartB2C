@@ -16,6 +16,7 @@ namespace ToyMartB2C
         public CartForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
 
         private void CartForm_Load(object sender, EventArgs e)
@@ -109,6 +110,7 @@ namespace ToyMartB2C
                 MessageBox.Show("Your cart is empty.", "Nothing to check out");
                 return;
             }
+
             foreach (DataGridViewRow r in dgvCart.Rows)
             {
                 if ((int)r.Cells["Qty"].Value > (int)r.Cells["Stock"].Value)
@@ -119,11 +121,30 @@ namespace ToyMartB2C
                 }
             }
 
-            var info = new DeliveryInfoForm();
-            this.Hide();
-            info.ShowDialog();
-            this.Close();
+            CheckoutInfo.LoadFromProfile();
+            bool needInfo = !CheckoutInfo.IsComplete;
+
+            while (true)
+            {
+                if (needInfo)
+                {
+                    using var infoDlg = new DeliveryInfoForm();
+                    bool saved = infoDlg.ShowDialog() == DialogResult.OK;
+                    if (!saved) return;          // Back to Cart: always return to the cart
+                    needInfo = false;
+                }
+
+                using var reviewDlg = new CheckoutForm();
+                var result = reviewDlg.ShowDialog();
+
+                if (result == DialogResult.Retry) { needInfo = true; continue; }
+                if (result == DialogResult.OK) { this.Close(); return; }
+
+                LoadCart();
+                return;
+            }
         }
+
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {

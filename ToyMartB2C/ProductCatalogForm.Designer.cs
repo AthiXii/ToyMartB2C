@@ -31,7 +31,6 @@
             label1 = new Label();
             txtSearch = new TextBox();
             cboCategory = new ComboBox();
-            btnCart = new Button();
             btnBack = new Button();
             flpProducts = new FlowLayoutPanel();
             label6 = new Label();
@@ -39,19 +38,21 @@
             btnLogout = new Button();
             btnLogin = new Button();
             lblUser = new Label();
+            btnCart = new Button();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(68, 65);
+            label1.Location = new Point(91, 77);
             label1.Name = "label1";
             label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(111, 65);
+            txtSearch.Location = new Point(134, 77);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(267, 23);
             txtSearch.TabIndex = 2;
@@ -60,25 +61,15 @@
             // cboCategory
             // 
             cboCategory.FormattingEnabled = true;
-            cboCategory.Location = new Point(384, 65);
+            cboCategory.Location = new Point(407, 77);
             cboCategory.Name = "cboCategory";
             cboCategory.Size = new Size(121, 23);
             cboCategory.TabIndex = 3;
             cboCategory.SelectedIndexChanged += cboCategory_SelectedIndexChanged;
             // 
-            // btnCart
-            // 
-            btnCart.Location = new Point(632, 61);
-            btnCart.Name = "btnCart";
-            btnCart.Size = new Size(75, 23);
-            btnCart.TabIndex = 4;
-            btnCart.Text = "Cart";
-            btnCart.UseVisualStyleBackColor = true;
-            btnCart.Click += btnCart_Click_1;
-            // 
             // btnBack
             // 
-            btnBack.Location = new Point(713, 61);
+            btnBack.Location = new Point(1431, 105);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(75, 23);
             btnBack.TabIndex = 5;
@@ -89,9 +80,9 @@
             // flpProducts
             // 
             flpProducts.AutoScroll = true;
-            flpProducts.Location = new Point(12, 94);
+            flpProducts.Location = new Point(30, 146);
             flpProducts.Name = "flpProducts";
-            flpProducts.Size = new Size(776, 344);
+            flpProducts.Size = new Size(1501, 570);
             flpProducts.TabIndex = 6;
             // 
             // label6
@@ -106,7 +97,7 @@
             // 
             // btnAccount
             // 
-            btnAccount.Location = new Point(632, 29);
+            btnAccount.Location = new Point(1340, 76);
             btnAccount.Name = "btnAccount";
             btnAccount.Size = new Size(75, 23);
             btnAccount.TabIndex = 16;
@@ -116,7 +107,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(713, 29);
+            btnLogout.Location = new Point(1431, 73);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(75, 23);
             btnLogout.TabIndex = 17;
@@ -126,7 +117,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(548, 29);
+            btnLogin.Location = new Point(1259, 105);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(75, 23);
             btnLogin.TabIndex = 18;
@@ -143,11 +134,33 @@
             lblUser.TabIndex = 19;
             lblUser.Text = "Browsing As Guest";
             // 
+            // btnCart
+            // 
+            btnCart.Location = new Point(1340, 105);
+            btnCart.Name = "btnCart";
+            btnCart.Size = new Size(75, 23);
+            btnCart.TabIndex = 20;
+            btnCart.Text = "Cart";
+            btnCart.UseVisualStyleBackColor = true;
+            btnCart.Click += btnCart_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(40, 77);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 21);
+            label2.TabIndex = 21;
+            label2.Text = "Search:";
+            // 
             // ProductCatalogForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1552, 744);
+            Controls.Add(label2);
+            Controls.Add(btnCart);
             Controls.Add(lblUser);
             Controls.Add(btnLogin);
             Controls.Add(btnLogout);
@@ -155,7 +168,6 @@
             Controls.Add(label6);
             Controls.Add(flpProducts);
             Controls.Add(btnBack);
-            Controls.Add(btnCart);
             Controls.Add(cboCategory);
             Controls.Add(txtSearch);
             Controls.Add(label1);
@@ -171,7 +183,6 @@
         private Label label1;
         private TextBox txtSearch;
         private ComboBox cboCategory;
-        private Button btnCart;
         private Button btnBack;
         private FlowLayoutPanel flpProducts;
         private Label label6;
@@ -179,5 +190,7 @@
         private Button btnLogout;
         private Button btnLogin;
         private Label lblUser;
+        private Button btnCart;
+        private Label label2;
     }
 }

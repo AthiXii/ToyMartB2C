@@ -17,6 +17,7 @@ namespace ToyMartB2C
         public RegisterForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -73,6 +74,11 @@ namespace ToyMartB2C
         private void RegisterForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

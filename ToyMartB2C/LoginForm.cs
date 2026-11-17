@@ -17,6 +17,7 @@ namespace ToyMartB2C
         public LoginForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

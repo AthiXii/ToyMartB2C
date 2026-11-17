@@ -18,6 +18,7 @@ namespace ToyMartB2C
         public ProductCatalogForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
 
 
@@ -71,9 +72,10 @@ namespace ToyMartB2C
                     Width = 210,
                     Height = 300,
                     Margin = new Padding(10),
-                    BorderStyle = BorderStyle.FixedSingle,
+                    BorderStyle = BorderStyle.None,
                     BackColor = Color.White
                 };
+                Theme.RoundPanel(card);
 
                 var pic = new PictureBox
                 {
@@ -104,7 +106,7 @@ namespace ToyMartB2C
                     Height = 22,
                     Text = "₱" + ((decimal)r["price"]).ToString("N2"),
                     Font = new Font("Segoe UI", 11, FontStyle.Bold),
-                    ForeColor = Color.SeaGreen
+                    ForeColor = ColorTranslator.FromHtml("#D81B60")
                 };
 
                 var lblStock = new Label
@@ -127,6 +129,7 @@ namespace ToyMartB2C
                     Enabled = stock > 0,
                     FlatStyle = FlatStyle.Flat
                 };
+                Theme.StyleButton(btn);
                 btn.Click += (s, args) => AddToCart(id);
 
                 card.Controls.AddRange(new Control[] { pic, lblName, lblPrice, lblStock, btn });
@@ -178,12 +181,6 @@ namespace ToyMartB2C
         {
             LoadProducts();
         }
-        private void btnCart_Click_1(object sender, EventArgs e)
-        {
-            if (!RequireLogin()) return;
-            new CartForm().ShowDialog();
-        }
-
         private void btnBack_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -217,7 +214,7 @@ namespace ToyMartB2C
                 : new ServiceDashboardForm();
             dash.ShowDialog();
 
-            Session.Clear();    
+            Session.Clear();
             UpdateHeader();
             this.Show();
         }
@@ -245,6 +242,12 @@ namespace ToyMartB2C
             Session.Clear();
             UpdateHeader();
             MessageBox.Show("You have been logged out.", "Goodbye");
+        }
+
+        private void btnCart_Click(object sender, EventArgs e)
+        {
+            if (!RequireLogin()) return;
+            new CartForm().ShowDialog();
         }
     }
 

@@ -34,14 +34,15 @@
             lblAddress = new Label();
             lblTotal = new Label();
             btnEdit = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnConfirm = new Button();
+            btnCancel = new Button();
             lblPayment = new Label();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             SuspendLayout();
             // 
@@ -50,17 +51,17 @@
             dgvItems.AllowUserToAddRows = false;
             dgvItems.AllowUserToOrderColumns = true;
             dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItems.Location = new Point(363, 77);
+            dgvItems.Location = new Point(885, 85);
             dgvItems.Name = "dgvItems";
             dgvItems.ReadOnly = true;
             dgvItems.RowHeadersVisible = false;
-            dgvItems.Size = new Size(222, 325);
+            dgvItems.Size = new Size(413, 580);
             dgvItems.TabIndex = 0;
             // 
             // lblRecipient
             // 
             lblRecipient.AutoSize = true;
-            lblRecipient.Location = new Point(182, 134);
+            lblRecipient.Location = new Point(604, 211);
             lblRecipient.Name = "lblRecipient";
             lblRecipient.Size = new Size(91, 15);
             lblRecipient.TabIndex = 1;
@@ -69,7 +70,7 @@
             // lblContact
             // 
             lblContact.AutoSize = true;
-            lblContact.Location = new Point(181, 161);
+            lblContact.Location = new Point(603, 238);
             lblContact.Name = "lblContact";
             lblContact.Size = new Size(69, 15);
             lblContact.TabIndex = 2;
@@ -77,16 +78,16 @@
             // 
             // lblAddress
             // 
-            lblAddress.Location = new Point(182, 188);
+            lblAddress.Location = new Point(603, 262);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(158, 23);
+            lblAddress.Size = new Size(183, 80);
             lblAddress.TabIndex = 3;
             lblAddress.Text = "full adress";
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(185, 218);
+            lblTotal.Location = new Point(604, 363);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(32, 15);
             lblTotal.TabIndex = 4;
@@ -94,35 +95,38 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(35, 304);
+            btnEdit.Location = new Point(470, 439);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(125, 23);
+            btnEdit.Size = new Size(239, 45);
             btnEdit.TabIndex = 5;
             btnEdit.Text = "Edit Delivery Info";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click_1;
             // 
-            // button2
+            // btnConfirm
             // 
-            button2.Location = new Point(35, 344);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 23);
-            button2.TabIndex = 6;
-            button2.Text = "Place Order";
-            button2.UseVisualStyleBackColor = true;
+            btnConfirm.Location = new Point(335, 564);
+            btnConfirm.Name = "btnConfirm";
+            btnConfirm.Size = new Size(239, 101);
+            btnConfirm.TabIndex = 6;
+            btnConfirm.Text = "Place Order";
+            btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
             // 
-            // button3
+            // btnCancel
             // 
-            button3.Location = new Point(180, 344);
-            button3.Name = "button3";
-            button3.Size = new Size(125, 23);
-            button3.TabIndex = 7;
-            button3.Text = "Cancel";
-            button3.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(603, 564);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(239, 101);
+            btnCancel.TabIndex = 7;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // lblPayment
             // 
             lblPayment.AutoSize = true;
-            lblPayment.Location = new Point(180, 250);
+            lblPayment.Location = new Point(604, 395);
             lblPayment.Name = "lblPayment";
             lblPayment.Size = new Size(105, 15);
             lblPayment.TabIndex = 8;
@@ -131,7 +135,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(35, 134);
+            label1.Location = new Point(457, 211);
             label1.Name = "label1";
             label1.Size = new Size(42, 15);
             label1.TabIndex = 9;
@@ -140,7 +144,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(35, 161);
+            label2.Location = new Point(457, 238);
             label2.Name = "label2";
             label2.Size = new Size(74, 15);
             label2.TabIndex = 10;
@@ -149,7 +153,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(35, 188);
+            label3.Location = new Point(457, 265);
             label3.Name = "label3";
             label3.Size = new Size(52, 15);
             label3.TabIndex = 11;
@@ -158,7 +162,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(35, 218);
+            label4.Location = new Point(448, 363);
             label4.Name = "label4";
             label4.Size = new Size(69, 15);
             label4.TabIndex = 13;
@@ -167,25 +171,36 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(35, 250);
+            label5.Location = new Point(448, 395);
             label5.Name = "label5";
             label5.Size = new Size(102, 15);
             label5.TabIndex = 14;
             label5.Text = "Payment Method:";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Modern No. 20", 35.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(35, 36);
+            label6.Name = "label6";
+            label6.Size = new Size(199, 50);
+            label6.TabIndex = 17;
+            label6.Text = "ToyMart";
+            // 
             // CheckoutForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(633, 450);
+            ClientSize = new Size(1552, 744);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblPayment);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btnCancel);
+            Controls.Add(btnConfirm);
             Controls.Add(btnEdit);
             Controls.Add(lblTotal);
             Controls.Add(lblAddress);
@@ -208,13 +223,14 @@
         private Label lblAddress;
         private Label lblTotal;
         private Button btnEdit;
-        private Button button2;
-        private Button button3;
+        private Button btnConfirm;
+        private Button btnCancel;
         private Label lblPayment;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
+        private Label label6;
     }
 }

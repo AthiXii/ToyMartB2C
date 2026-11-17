@@ -36,6 +36,7 @@
             btnPlus = new Button();
             btnRemove = new Button();
             btnCheckout = new Button();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvCart).BeginInit();
             SuspendLayout();
             // 
@@ -43,19 +44,19 @@
             // 
             dgvCart.AllowUserToAddRows = false;
             dgvCart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCart.Location = new Point(50, 52);
+            dgvCart.Location = new Point(414, 126);
             dgvCart.MultiSelect = false;
             dgvCart.Name = "dgvCart";
             dgvCart.ReadOnly = true;
             dgvCart.RowHeadersVisible = false;
             dgvCart.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCart.Size = new Size(236, 310);
+            dgvCart.Size = new Size(484, 533);
             dgvCart.TabIndex = 0;
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(115, 377);
+            lblTotal.Location = new Point(1033, 198);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(35, 15);
             lblTotal.TabIndex = 1;
@@ -64,7 +65,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(50, 377);
+            label1.Location = new Point(952, 198);
             label1.Name = "label1";
             label1.Size = new Size(36, 15);
             label1.TabIndex = 2;
@@ -72,19 +73,19 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(325, 230);
+            btnBack.Location = new Point(949, 269);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(193, 23);
+            btnBack.Size = new Size(221, 79);
             btnBack.TabIndex = 3;
-            btnBack.Text = "Continue Shopping";
+            btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click_1;
             // 
             // btnMinus
             // 
-            btnMinus.Location = new Point(443, 270);
+            btnMinus.Location = new Point(1067, 370);
             btnMinus.Name = "btnMinus";
-            btnMinus.Size = new Size(75, 23);
+            btnMinus.Size = new Size(103, 79);
             btnMinus.TabIndex = 4;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = true;
@@ -92,9 +93,9 @@
             // 
             // btnPlus
             // 
-            btnPlus.Location = new Point(325, 270);
+            btnPlus.Location = new Point(949, 370);
             btnPlus.Name = "btnPlus";
-            btnPlus.Size = new Size(75, 23);
+            btnPlus.Size = new Size(103, 79);
             btnPlus.TabIndex = 5;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = true;
@@ -102,9 +103,9 @@
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(325, 299);
+            btnRemove.Location = new Point(949, 475);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(193, 23);
+            btnRemove.Size = new Size(221, 79);
             btnRemove.TabIndex = 6;
             btnRemove.Text = "Remove Item";
             btnRemove.UseVisualStyleBackColor = true;
@@ -112,19 +113,30 @@
             // 
             // btnCheckout
             // 
-            btnCheckout.Location = new Point(325, 342);
+            btnCheckout.Location = new Point(949, 580);
             btnCheckout.Name = "btnCheckout";
-            btnCheckout.Size = new Size(193, 23);
+            btnCheckout.Size = new Size(221, 79);
             btnCheckout.TabIndex = 7;
             btnCheckout.Text = "Proceed to Checkout";
             btnCheckout.UseVisualStyleBackColor = true;
             btnCheckout.Click += btnCheckout_Click_1;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Modern No. 20", 35.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(39, 26);
+            label6.Name = "label6";
+            label6.Size = new Size(199, 50);
+            label6.TabIndex = 17;
+            label6.Text = "ToyMart";
+            // 
             // CartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1552, 744);
+            Controls.Add(label6);
             Controls.Add(btnCheckout);
             Controls.Add(btnRemove);
             Controls.Add(btnPlus);
@@ -151,5 +163,6 @@
         private Button btnPlus;
         private Button btnRemove;
         private Button btnCheckout;
+        private Label label6;
     }
 }

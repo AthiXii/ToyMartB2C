@@ -8,17 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Microsoft.Data.SqlClient;
 
 namespace ToyMartB2C
 {
     public partial class DeliveryInfoForm : Form
     {
+        public bool ProfileMode { get; set; } = false;
+
         public DeliveryInfoForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
+
         private void DeliveryInfoForm_Load(object sender, EventArgs e)
         {
+            CheckoutInfo.LoadFromProfile();
+            btnContinue.Text = ProfileMode ? "Save Details" : "Review Order";
+            btnBack.Text = ProfileMode ? "Cancel" : "Back to Cart";
+
+            cboPayment.Items.Clear();
+            cboPayment.Items.AddRange(new object[] {
+                "Cash on Delivery", "GCash", "Maya", "Credit/Debit Card"
+            });
+            cboProvince.Items.Clear();
+            cboProvince.Items.AddRange(new object[] {
+                "Metro Manila", "Cavite", "Laguna", "Batangas", "Rizal", "Quezon",
+                "Bulacan", "Pampanga", "Cebu", "Davao del Sur"
+            });
+
             txtRecipient.Text = CheckoutInfo.Recipient;
             txtContact.Text = CheckoutInfo.Contact;
             cboProvince.Text = CheckoutInfo.Province;
@@ -32,7 +51,7 @@ namespace ToyMartB2C
             if (txtRecipient.Text == "")
             {
                 var dt = Db.Query("SELECT full_name FROM users WHERE user_id = @id",
-                    new Microsoft.Data.SqlClient.SqlParameter("@id", Session.UserId));
+                    new SqlParameter("@id", Session.UserId));
                 if (dt.Rows.Count > 0) txtRecipient.Text = dt.Rows[0][0].ToString();
             }
         }
@@ -59,7 +78,13 @@ namespace ToyMartB2C
             return true;
         }
 
-        private void btnContinue_Click(object sender, EventArgs e)
+        private void btnBack_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnContinue_Click_1(object sender, EventArgs e)
         {
             if (!ValidateDelivery()) return;
 
@@ -72,14 +97,9 @@ namespace ToyMartB2C
             CheckoutInfo.Postal = txtPostal.Text.Trim();
             CheckoutInfo.Payment = cboPayment.Text;
 
-            var review = new CheckoutForm(this);
-            this.Hide();
-            review.Show();
-        }
+            CheckoutInfo.SaveToProfile();
+            this.DialogResult = DialogResult.OK;
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

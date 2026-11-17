@@ -19,6 +19,7 @@ namespace ToyMartB2C
         public InventoryForm()
         {
             InitializeComponent();
+            Theme.Apply(this);
         }
         private void InventoryForm_Load(object sender, EventArgs e)
         {

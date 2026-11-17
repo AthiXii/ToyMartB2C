@@ -8,37 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+
 namespace ToyMartB2C
 {
     public partial class CheckoutForm : Form
     {
-        private readonly DeliveryInfoForm infoForm;
-        private bool goingBack = false;
         private decimal total = 0;
 
-        public CheckoutForm(DeliveryInfoForm info)
+        public CheckoutForm()
         {
             InitializeComponent();
-            infoForm = info;
+            Theme.Apply(this);
         }
 
         private void CheckoutForm_Load(object sender, EventArgs e)
         {
-            lblRecipient.Text = "Recipient: " + CheckoutInfo.Recipient;
-            lblContact.Text = "Contact: " + CheckoutInfo.Contact;
-            lblAddress.Text = "Deliver to: " + CheckoutInfo.FullAddress;
-            lblPayment.Text = "Payment: " + CheckoutInfo.Payment;
+            lblRecipient.Text = CheckoutInfo.Recipient;
+            lblContact.Text = CheckoutInfo.Contact;
+            lblAddress.Text = CheckoutInfo.FullAddress;
+            lblPayment.Text = CheckoutInfo.Payment;
 
             var dt = Db.Query(
-       "SELECT p.product_id, p.name AS Product, p.price AS Price, c.quantity AS Qty, " +
-       "p.price * c.quantity AS Subtotal " +
-       "FROM cart c JOIN products p ON c.product_id = p.product_id " +
-       "WHERE c.user_id = @u",
-       new SqlParameter("@u", Session.UserId));
+                "SELECT p.product_id, p.name AS Product, p.price AS Price, c.quantity AS Qty, " +
+                "p.price * c.quantity AS Subtotal " +
+                "FROM cart c JOIN products p ON c.product_id = p.product_id " +
+                "WHERE c.user_id = @u",
+                new SqlParameter("@u", Session.UserId));
+
             if (dt.Rows.Count == 0)
             {
                 MessageBox.Show("Your cart is empty.", "Nothing to check out");
-                this.Close();
+                this.DialogResult = DialogResult.Cancel;
                 return;
             }
 
@@ -49,16 +49,16 @@ namespace ToyMartB2C
             foreach (DataRow r in dt.Rows) total += (decimal)r["Subtotal"];
             lblTotal.Text = "Total: ₱" + total.ToString("N2");
         }
-        private void btnEdit_Click(object sender, EventArgs e)
+
+        // Back to the delivery info form
+        private void btnEdit_Click_1(object sender, EventArgs e)
         {
-            goingBack = true;
-            infoForm.Show();
-            this.Close();
+            this.DialogResult = DialogResult.Retry;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -119,9 +119,8 @@ namespace ToyMartB2C
                 CheckoutInfo.LastOrderId = orderId;
                 MessageBox.Show("Order placed! Order #" + orderId, "Success");
 
-                goingBack = false;
-                this.Close();                 
-               // new RewardsForm().Show();  
+                // new RewardsForm().ShowDialog();   // skipped for now
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -129,9 +128,5 @@ namespace ToyMartB2C
                 MessageBox.Show("Order failed: " + ex.Message, "Error");
             }
         }
-        private void CheckoutForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!goingBack) infoForm.Close();
-        }
     }
-    }
+}
